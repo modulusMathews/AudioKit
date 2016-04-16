@@ -83,7 +83,7 @@ public class AKWavetableSynth: AKPolyphonicInstrument {
     }
 }
 
-internal class AKOscillatorVoice: AKVoice {
+public class AKOscillatorVoice: AKVoice {
     
     var oscillator: AKOscillator
     var adsr: AKAmplitudeEnvelope
@@ -105,24 +105,24 @@ internal class AKOscillatorVoice: AKVoice {
     }
     
     /// Function create an identical new node for use in creating polyphonic instruments
-    override func duplicate() -> AKVoice {
+    override public func duplicate() -> AKVoice {
         let copy = AKOscillatorVoice(waveform: self.waveform)
         return copy
     }
     
     /// Tells whether the node is processing (ie. started, playing, or active)
-    override var isStarted: Bool {
+    override public var isStarted: Bool {
         return oscillator.isPlaying
     }
     
     /// Function to start, play, or activate the node, all do the same thing
-    override func start() {
+    override public func start() {
         oscillator.start()
         adsr.start()
     }
     
     /// Function to stop or bypass the node, both are equivalent
-    override func stop() {
+    override public func stop() {
         adsr.stop()
     }
 }
